@@ -4,7 +4,7 @@
 
 Percolation::Percolation(int n){
   this->size = n;
-  this->qu = WeightedQuickUnionUF(n*n + 2);
+  this->qu = WeightedQuickUnionUF(n*n + 4);
   for (int i = 0; i < n*n; i++) {
     this->state.push_back(false);
   }
@@ -27,36 +27,48 @@ void Percolation::setState(std::vector<bool> state) {
     
 }
 void Percolation::open(int index){
- 
-        state[index] = true;
-        //int index = row * size + col;
+  state[index] = true;
 
-        if (isOpen(index + size)){  //down
-	  //if (qu.find(index) != qu.find(index + size)){
-             qu.myUnion(index, index + size);
-		// }
-        }
-        if (isOpen(index-size)){  //up
-	  //if (qu.find(index - 1) != qu.find(index)){
-	    qu.myUnion(index, index - size);
-		// }
-        }
-        if (isOpen(index + 1)){  //right
-	  //if (qu.find(index) != qu.find(index + 1)){
-             qu.myUnion(index, index + 1);
-		//}
-        }
-        if (isOpen(index-1)){  //left
-	  //if (qu.find(index) != qu.find(index - 1)){
-            qu.myUnion(index, index - 1);
-		//}
-        }
-        if (index < size){
-            qu.myUnion(index, size * size);
-        }
-        if (index >= size*(size-1)){
-            qu.myUnion(index, size * size + 1);
-        }
+  if (isOpen(index + size)){  //down
+
+    qu.myUnion(index, index + size);
+
+  }
+  if (isOpen(index-size)){  //up
+
+    qu.myUnion(index, index - size);
+
+  }
+  if (isOpen(index + 1)){  //right	
+
+      qu.myUnion(index, index + 1);
+
+  }
+  if (isOpen(index-1)){  //left
+
+    qu.myUnion(index, index - 1);
+  }
+  if (index < size){
+ 
+    qu.myUnion(index, size * size);
+
+  }
+  if(index%size == 0){
+
+    qu.myUnion(index, size * size + 2);
+    
+  }
+  if (index >= size*(size-1)){
+
+    qu.myUnion(index, size * size + 1);
+
+  }
+  if(index%size == size-1){
+
+    qu.myUnion(index, size * size + 3);
+
+  }
+
 }
 void Percolation:: setQu(WeightedQuickUnionUF qu) {
   this->qu = qu;
@@ -79,6 +91,8 @@ int Percolation::numberOfOpenSites() {
         return count;
 }
 bool Percolation::percolates(){
-   return qu.find(size * size) == qu.find(size * size + 1);
+   return
+     //qu.find(size * size) == qu.find(size * size + 1) ||
+     qu.find(size * size + 2) == qu.find(size * size + 3);
 }
 

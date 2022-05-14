@@ -6,9 +6,12 @@
 int main(int agrc,char *argv[]){
 
   //std::vector<int> grid(N*N);
-  int seed = std::atoi(argv[1]);
-  float p = std::atof(argv[2]);
-  int N = std::atoi(argv[3]);
+
+  std::cout<<argv[1]<<" "<<argv[2]<<" "<<argv[3]<<std::endl;
+  
+  int seed = std::atoi("2");
+  float p = std::atof("0.5");
+  int N = std::atoi("20");
   
   Percolation percolation = Percolation(N);
   std::mt19937 gen(seed);

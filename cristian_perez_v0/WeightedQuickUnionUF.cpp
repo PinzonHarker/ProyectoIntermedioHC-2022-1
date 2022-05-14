@@ -26,7 +26,7 @@ void WeightedQuickUnionUF::validate(int p){
   int n = parent.size();
   if (p < 0 || p >= n) {
     //throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n-1));  
-    std::cout<<"Exception xd"<<std::endl;
+    std::cout<<"Exception xd"<<" "<<p<<std::endl;
   }
 }
 void WeightedQuickUnionUF::myUnion(int p, int q){
