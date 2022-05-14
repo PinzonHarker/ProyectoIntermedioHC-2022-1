@@ -1,22 +1,37 @@
-<mxfile host="app.diagrams.net" modified="2022-05-14T15:39:21.638Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36" etag="WNsjnsGeikgB5-8zJ-w2" version="18.0.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-05-14T15:59:17.951Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36" etag="3Nuf0381JB0oXXRtWgAt" version="18.0.3" type="github">
   <diagram id="e-AhScZhy8xBjRuxg0bS" name="Page-1">
     <mxGraphModel dx="1038" dy="571" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="YMJT6hf8rE6V5UJdb0HS-1" value="Percolation&#xa;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="130" y="120" width="270" height="300" as="geometry">
+          <mxGeometry x="230" y="170" width="340" height="330" as="geometry">
             <mxRectangle x="130" y="120" width="100" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="YMJT6hf8rE6V5UJdb0HS-2" value="- bool begin = true;&#xa;- bool end = true;&#xa;- Vector[bool] state;&#xa;- WeightedQuickUnionUF qu;&#xa;- int size;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="YMJT6hf8rE6V5UJdb0HS-1">
-          <mxGeometry y="26" width="270" height="84" as="geometry" />
+        <mxCell id="YMJT6hf8rE6V5UJdb0HS-2" value="- begin: bool  &#xa;- end : bool &#xa;- state : Vector&lt;bool&gt;&#xa;- qu : WeightedQuickUnionUF&#xa;- size : int " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Verdana;fontSize=13;" vertex="1" parent="YMJT6hf8rE6V5UJdb0HS-1">
+          <mxGeometry y="26" width="340" height="84" as="geometry" />
         </mxCell>
         <mxCell id="YMJT6hf8rE6V5UJdb0HS-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="YMJT6hf8rE6V5UJdb0HS-1">
-          <mxGeometry y="110" width="270" height="8" as="geometry" />
+          <mxGeometry y="110" width="340" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="YMJT6hf8rE6V5UJdb0HS-4" value="+  void setSize(int n);&#xa;+ int getSize();&#xa;+ WeightedQuickUnionUF getQu();&#xa;+ void setQu(WeightedQuickUnionUF qu);&#xa;+ std::vector&lt;bool&gt; getState();&#xa;+ void setState(std::vector&lt;bool&gt; state);&#xa;+ void open(int, int);&#xa;+ bool isOpen(int, int);&#xa;+ bool isFull(int, int);&#xa;+ int numberOfOpenSites();&#xa;+ bool percolates();" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="YMJT6hf8rE6V5UJdb0HS-1">
-          <mxGeometry y="118" width="270" height="182" as="geometry" />
+        <mxCell id="YMJT6hf8rE6V5UJdb0HS-4" value="+ setSize(int n) : int &#xa;+ getSize(): int&#xa;+ getQu() : WeightedQuickUnionUF&#xa;+ setQu(WeightedQuickUnionUF qu); void &#xa;&#xa;+ getState() : Vector&lt;bool&gt;&#xa;+ setState(std::vector&lt;bool&gt; state) : void &#xa;+ open(int, int) : void &#xa;+ isOpen(int, int) : bool &#xa;+ isFull(int, int) : bool &#xa;+ numberOfOpenSites() : int &#xa;+ percolates() : bool " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=13;fontFamily=Verdana;" vertex="1" parent="YMJT6hf8rE6V5UJdb0HS-1">
+          <mxGeometry y="118" width="340" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="YMJT6hf8rE6V5UJdb0HS-5" value="Classname" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="240" width="160" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="YMJT6hf8rE6V5UJdb0HS-6" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="YMJT6hf8rE6V5UJdb0HS-5">
+          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YMJT6hf8rE6V5UJdb0HS-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="YMJT6hf8rE6V5UJdb0HS-5">
+          <mxGeometry y="52" width="160" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="YMJT6hf8rE6V5UJdb0HS-8" value="+ method(type): type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="YMJT6hf8rE6V5UJdb0HS-5">
+          <mxGeometry y="60" width="160" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="YMJT6hf8rE6V5UJdb0HS-9" value="MatrixManipulation" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;fontFamily=Verdana;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="55" y="60" width="175" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
