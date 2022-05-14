@@ -21,9 +21,9 @@ public:
   void setQu(WeightedQuickUnionUF qu);
   std::vector<bool> getState();
   void setState(std::vector<bool> state);
-  void open(int, int);
-  bool isOpen(int, int);
-  bool isFull(int, int);
+  void open(int index);
+  bool isOpen(int index);
+  bool isFull(int index);
   int numberOfOpenSites();
   bool percolates();
 

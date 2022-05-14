@@ -51,11 +51,11 @@ void Percolation::open(int index){
             qu.myUnion(index, index - 1);
 		//}
         }
-        if (row == 0){
-            qu.myUnion(col, size * size);
+        if (index < size){
+            qu.myUnion(index, size * size);
         }
-        if (row == size - 1){
-            qu.myUnion(row * size + col, size * size + 1);
+        if (index >= size*(size-1)){
+            qu.myUnion(index, size * size + 1);
         }
 }
 void Percolation:: setQu(WeightedQuickUnionUF qu) {
