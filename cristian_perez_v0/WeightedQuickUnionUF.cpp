@@ -3,13 +3,7 @@
 #include <iostream>
 
 
-WeightedQuickUnionUF::WeightedQuickUnionUF(){
-  count = 0;
-  for (int i = 0; i < 0; i++){
-    parent[i] = i;
-    size[i] = 1;
-  }
-}
+WeightedQuickUnionUF::WeightedQuickUnionUF(){}
 
 WeightedQuickUnionUF::WeightedQuickUnionUF(int n){
   count = n;

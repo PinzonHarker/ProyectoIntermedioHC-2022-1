@@ -6,16 +6,16 @@ class Percolation{
 
 private:
 
-  bool begin = true;
-  bool end = true;
-  std::vector<bool> state;
-  WeightedQuickUnionUF qu;
+  //bool begin = true;
+  // bool end = true;
+  std::vector<bool> state;//estados 
+  WeightedQuickUnionUF qu;//algoritmo find-union
   int size;
 
 public:
   
-  Percolation(int n);
-  void setSize(int n);
+  Percolation(int n);//metodo constructor, inicializa mis varibles 
+  void setSize(int n);//
   int getSize();
   WeightedQuickUnionUF getQu();
   void setQu(WeightedQuickUnionUF qu);
