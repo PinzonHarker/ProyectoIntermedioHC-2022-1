@@ -13,13 +13,13 @@ int main(int agrc,char *argv[]){
   Percolation percolation = Percolation(N);
   std::mt19937 gen(seed);
   std::uniform_real_distribution<double> dis(0, 1);
-  for(int i = 0; i < N*N; ++i) {
-    //for(int j = 0; j < N; ++j) {
+  for(int i = 0; i < N; ++i) {
+    for(int j = 0; j < N; ++j) {
       float gen2 = dis(gen);
       if(gen2<=p){
-	percolation.open(i);
+	percolation.open(i,j);
 	//grid[n] = 1;
-	//}
+      }
     }
   }
 
@@ -31,7 +31,7 @@ int main(int agrc,char *argv[]){
   //p.open(1, 1);
   //p.open(2, 1);
   
-  for (int i = 0; i < N * N + 2; i++){
+  for (int i = 0; i < n * n + 2; i++){
     std::cout<<percolation.getQu().find(i)<<" ";;
   }
   std::cout<<"Sitios libres: "<<percolation.numberOfOpenSites()<<std::endl;

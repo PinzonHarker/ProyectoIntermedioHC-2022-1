@@ -26,30 +26,30 @@ void Percolation::setState(std::vector<bool> state) {
   this->state = state;
     
 }
-void Percolation::open(int row, int col){
+void Percolation::open(int index){
  
-        state[row * size + col] = true;
-        int index = row * size + col;
+        state[index] = true;
+        //int index = row * size + col;
 
-        if (isOpen(row + 1, col)){  //down
-            if (qu.find(index) != qu.find(index + size)){
-                qu.myUnion(index, index + size);
-            }
+        if (isOpen(index + size)){  //down
+	  //if (qu.find(index) != qu.find(index + size)){
+             qu.myUnion(index, index + size);
+		// }
         }
-        if (isOpen(row - 1, col)){  //up
-            if (qu.find(index - 1) != qu.find(index)){
-                qu.myUnion(index, index - size);
-            }
+        if (isOpen(index-size)){  //up
+	  //if (qu.find(index - 1) != qu.find(index)){
+	    qu.myUnion(index, index - size);
+		// }
         }
-        if (isOpen(row, col + 1)){  //right
-            if (qu.find(index) != qu.find(index + 1)){
-                qu.myUnion(index, index + 1);
-            }
+        if (isOpen(index + 1)){  //right
+	  //if (qu.find(index) != qu.find(index + 1)){
+             qu.myUnion(index, index + 1);
+		//}
         }
-        if (isOpen(row, col - 1)){  //left
-            if (qu.find(index) != qu.find(index - 1)){
-                qu.myUnion(index, index - 1);
-            }
+        if (isOpen(index-1)){  //left
+	  //if (qu.find(index) != qu.find(index - 1)){
+            qu.myUnion(index, index - 1);
+		//}
         }
         if (row == 0){
             qu.myUnion(col, size * size);
@@ -61,23 +61,21 @@ void Percolation::open(int row, int col){
 void Percolation:: setQu(WeightedQuickUnionUF qu) {
   this->qu = qu;
 }
-bool Percolation::isOpen(int row, int col) {
-  return state[row*size + col];
+bool Percolation::isOpen(int index) {
+  return state[index];
     
 }
 
-bool Percolation::isFull(int row, int col) {
-  return !isOpen(row, col);}
+bool Percolation::isFull(int index) {
+  return !isOpen(index);
+}
 int Percolation::numberOfOpenSites() {
-        int count = 0;
-        for (int i = 0; i < state.size(); i++) {
-            
-                if (state[i]){
-                    count++;
-                }
-
-            
-        }
+  int count = 0;
+  for (int i = 0; i < state.size(); i++) {
+    if (state[i]){
+      count++;
+    }
+  }
         return count;
 }
 bool Percolation::percolates(){
