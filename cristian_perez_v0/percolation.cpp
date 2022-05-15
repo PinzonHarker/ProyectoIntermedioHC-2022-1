@@ -28,26 +28,35 @@ void Percolation::setState(std::vector<bool> state) {
 }
 void Percolation::open(int index){
   state[index] = true;
+  if(index<size*(size - 1)){
+    if (isOpen(index + size)){  //down
 
-  if (isOpen(index + size)){  //down
+      qu.myUnion(index, index + size);
 
-    qu.myUnion(index, index + size);
-
+    }
   }
-  if (isOpen(index-size)){  //up
+  if(index>=size){
+    if (isOpen(index-size)){  //up
 
-    qu.myUnion(index, index - size);
+      qu.myUnion(index, index - size);
 
+    }
   }
-  if (isOpen(index + 1)){  //right	
+  if(index%size != size-1){
+    if (isOpen(index + 1)){  //right	
 
-      qu.myUnion(index, index + 1);
+	qu.myUnion(index, index + 1);
 
+    }
   }
-  if (isOpen(index-1)){  //left
+  if(index%size != 0){
+    if (isOpen(index-1)){  //left
 
-    qu.myUnion(index, index - 1);
+      qu.myUnion(index, index - 1);
+
+    }
   }
+  
   if (index < size){
  
     qu.myUnion(index, size * size);
@@ -55,7 +64,7 @@ void Percolation::open(int index){
   }
   if(index%size == 0){
 
-    qu.myUnion(index, size * size + 2);
+     qu.myUnion(index, size * size + 2);
     
   }
   if (index >= size*(size-1)){
@@ -92,7 +101,7 @@ int Percolation::numberOfOpenSites() {
 }
 bool Percolation::percolates(){
    return
-     //qu.find(size * size) == qu.find(size * size + 1) ||
+     qu.find(size * size) == qu.find(size * size + 1) ||
      qu.find(size * size + 2) == qu.find(size * size + 3);
 }
 
