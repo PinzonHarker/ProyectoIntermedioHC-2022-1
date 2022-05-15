@@ -17,7 +17,9 @@ valgrid:all
 	valgrind $(VALGRINDFLAGS) ./a.out 1 0.5 20
 
 test:Fill.cpp percolation.cpp WeightedQuickUnionUF.cpp percolation_test.cpp
-	g++ -g Fill.cpp percolation.cpp WeightedQuickUnionUF.cpp percolation_test.cpp
-
+	g++ -c Fill.cpp percolation.cpp WeightedQuickUnionUF.cpp
+	g++ $$(pkg-config --cflags catch2) -c percolation_test.cpp
+	g++ WeightedQuickUnionUF.o percolation.o Fill.o percolation_test.o -o percolation_test.x
+	./percolation_test.x
 clean:
 	rm -rf *.x a.out *.x.*
