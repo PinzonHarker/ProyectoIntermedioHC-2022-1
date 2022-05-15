@@ -13,7 +13,7 @@ private:
   int size;
 
 public:
-  
+  Percolation();
   Percolation(int n);//metodo constructor, inicializa mis varibles 
   void setSize(int n);//
   int getSize();
@@ -26,6 +26,6 @@ public:
   bool isFull(int index);
   int numberOfOpenSites();
   bool percolates();
-
+  void fill(int seed, double p, int n);
 };
 

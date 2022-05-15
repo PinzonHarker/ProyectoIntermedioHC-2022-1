@@ -1,6 +1,9 @@
 #include <vector>
 #include "percolation.h"
 #include "WeightedQuickUnionUF.h"
+#include <random>
+
+Percolation::Percolation(){}
 
 Percolation::Percolation(int n){
   this->size = n;
@@ -105,3 +108,10 @@ bool Percolation::percolates(){
      qu.find(size * size + 2) == qu.find(size * size + 3);
 }
 
+
+
+
+
+
+
+   
