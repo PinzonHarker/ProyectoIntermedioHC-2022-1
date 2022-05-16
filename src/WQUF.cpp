@@ -6,6 +6,9 @@ WQUF::WQUF() {}
 
 WQUF::WQUF(int n)
 {
+  if(n < 0){
+    throw std::invalid_argument("The value must into the range.");
+  }
   count = n;
   for (int i = 0; i < n; i++)
   {
@@ -18,11 +21,19 @@ int WQUF::getCount()
 {
   return count;
 }
+
 int WQUF::find(int p)
 {
   validate(p);
-  while (p != parent[p])
-    p = parent[p];
+  int root = p;
+  while (root != parent[root])
+    root = parent[root];
+  while (p != root)
+  {
+    int newp = parent[p];
+    parent[p] = root;
+    p = newp;
+  }
   return p;
 }
 void WQUF::validate(int p)
@@ -30,9 +41,7 @@ void WQUF::validate(int p)
   int n = parent.size();
   if (p < 0 || p >= n)
   {
-    // throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n-1));
-    std::cout << "Exception xd"
-              << " " << p << std::endl;
+    throw std::invalid_argument("The value must into the range.");
   }
 }
 void WQUF::myUnion(int p, int q)

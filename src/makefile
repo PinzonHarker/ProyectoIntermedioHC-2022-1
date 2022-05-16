@@ -1,3 +1,4 @@
+SHELL:= /bin/zsh
 CXX= g++
 CXXFLAGS= -std=c++17 -g
 SANITFLAGS= -fsanitize=address -fsanitize=leak -fsanitize=undefined
@@ -5,7 +6,7 @@ VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 
 TARGET = main.x
 FILES = Percolation.o WQUF.o Fill.o
-TEST = PercolationTest
+TEST = WQUFTest
 TEST_FILE = ../tests/$(TEST).cpp
 
 
@@ -33,11 +34,15 @@ mainStz.x: main.o $(FILES)
 main.x: main.o $(FILES)
 	$(CXX) $^ -o $@
 
+# We assume spack on path
 $(TEST).o: $(TEST_FILE)
-	$(CXX) $(CXXFLAGS) $$(pkg-config --cflags catch2) -c $<
+	$(CXX) $$(pkg-config --cflags catch2) -c $<
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
-	rm -rf *.x a.out *.x.* *.o
+	rm -rf *.x *.o
+
+cleanall:
+	rm -rf *.x *.out *.o

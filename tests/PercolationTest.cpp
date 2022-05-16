@@ -5,7 +5,7 @@
 
 #include "../libs/Fill.h"
 
-TEST_CASE("Factorials are computed", "[factorial]")
+TEST_CASE("Percolating various matrix")
 {
 
   Fill f;
