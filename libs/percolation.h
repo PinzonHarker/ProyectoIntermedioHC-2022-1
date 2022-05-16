@@ -2,20 +2,20 @@
 #include <vector>
 #include "WeightedQuickUnionUF.h"
 
-class Percolation{
+class Percolation
+{
 
 private:
-
   bool begin = true;
   bool end = true;
-  std::vector<bool> state;//estados 
-  WeightedQuickUnionUF qu;//algoritmo find-union
+  std::vector<bool> state; // estados
+  WeightedQuickUnionUF qu; // algoritmo find-union
   int size;
 
 public:
   Percolation();
-  Percolation(int n);//metodo constructor, inicializa mis varibles 
-  void setSize(int n);//
+  Percolation(int n);  // metodo constructor, inicializa mis varibles
+  void setSize(int n); //
   int getSize();
   WeightedQuickUnionUF getQu();
   void setQu(WeightedQuickUnionUF qu);
@@ -28,4 +28,3 @@ public:
   bool percolates();
   void fill(int seed, double p, int n);
 };
-

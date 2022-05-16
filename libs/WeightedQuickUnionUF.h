@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
 
-class WeightedQuickUnionUF{
+class WeightedQuickUnionUF
+{
 private:
-
   std::vector<int> parent;
   std::vector<int> size;
   int count;
@@ -15,5 +15,4 @@ public:
   int getCount();
   int find(int p);
   void myUnion(int p, int q);
-
-}; 
+};
