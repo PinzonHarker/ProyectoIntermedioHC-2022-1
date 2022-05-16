@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 
+WQUF::WQUF(){}
 
 WQUF::WQUF(int n)
 {
@@ -17,6 +18,10 @@ int WQUF::getCount()
 {
   return count;
 }
+
+std::vector<int> WQUF::getParent(){
+  return this->parent;
+}
 int WQUF::find(int p)
 {
   validate(p);
@@ -29,9 +34,7 @@ void WQUF::validate(int p)
   int n = parent.size();
   if (p < 0 || p >= n)
   {
-    // throw new IllegalArgumentException("index " + p + " is not between 0 and " + (n-1));
-    std::cout << "Exception xd"
-              << " " << p << std::endl;
+    throw std::invalid_argument( "The value must into 0 to 1." );
   }
 }
 void WQUF::myUnion(int p, int q)

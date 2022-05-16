@@ -1,3 +1,4 @@
+SHELL:= /bin/zsh
 CXX= g++
 CXXFLAGS= -std=c++17 -g
 SANITFLAGS= -fsanitize=address -fsanitize=leak -fsanitize=undefined
@@ -5,7 +6,7 @@ VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 
 TARGET = main.x
 FILES = Percolation.o WQUF.o Fill.o
-TEST = PercolationTest
+TEST = WQUFTest
 TEST_FILE = ../tests/$(TEST).cpp
 
 
@@ -41,4 +42,4 @@ $(TEST).o: $(TEST_FILE)
 	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
-	rm -rf *.x a.out *.x.* *.o
+	rm -rf *.x *.out *.o
