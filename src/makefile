@@ -33,8 +33,9 @@ mainStz.x: main.o $(FILES)
 main.x: main.o $(FILES)
 	$(CXX) $^ -o $@
 
+# We assume spack on path
 $(TEST).o: $(TEST_FILE)
-	$(CXX) $(CXXFLAGS) $$(pkg-config --cflags catch2) -c $<
+	$(CXX) $$(pkg-config --cflags catch2) -c $<
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $<

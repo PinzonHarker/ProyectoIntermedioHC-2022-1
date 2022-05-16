@@ -1,6 +1,6 @@
 #pragma once
 
-#include "WeightedQuickUnionUF.h"
+#include "WQUF.h"
 #include <vector>
 
 class Percolation
@@ -10,8 +10,8 @@ private:
   bool begin = true;
   bool end = true;
   std::vector<bool> state; // estados
-  WeightedQuickUnionUF qu; // algoritmo find-union
-  WeightedQuickUnionUF quT;
+  WQUF qu; // algoritmo find-union
+  WQUF quT;
   int size;
 
 public:
@@ -19,9 +19,9 @@ public:
   Percolation(int n); // metodo constructor, inicializa mis varibles
   void setSize(int n);
   int getSize();
-  WeightedQuickUnionUF getQu();
-  void setQu(WeightedQuickUnionUF qu);
-  void setQuT(WeightedQuickUnionUF quT);
+  WQUF getQu();
+  void setQu(WQUF qu);
+  void setQuT(WQUF quT);
   std::vector<bool> getState();
   void setState(std::vector<bool> state);
   void open(int index);

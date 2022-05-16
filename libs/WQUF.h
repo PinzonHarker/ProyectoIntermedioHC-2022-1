@@ -2,7 +2,7 @@
 
 #include <vector>
 
-class WeightedQuickUnionUF
+class WQUF
 {
 private:
   std::vector<int> parent;
@@ -11,9 +11,9 @@ private:
   void validate(int p);
 
 public:
-  WeightedQuickUnionUF();
-  WeightedQuickUnionUF(int n);
+  WQUF(int n);
   int getCount();
   int find(int p);
   void myUnion(int p, int q);
+  
 };

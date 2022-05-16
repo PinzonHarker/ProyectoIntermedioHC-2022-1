@@ -1,6 +1,6 @@
 #pragma once
 
-#include "percolation.h"
+#include "Percolation.h"
 #include <vector>
 #include <string>
 
@@ -13,8 +13,9 @@ private:
   void fill(int, double, int);
 
 public:
-  bool percolate(int, double, int);
-  std::string toString(std::vector<bool> vector);
   std::vector<bool> getMatrix();
   Percolation getPercolation();
+  bool percolate(int, double, int);
+  std::string toString(std::vector<bool> vector);
+  
 };

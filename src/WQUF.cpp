@@ -2,7 +2,6 @@
 #include <vector>
 #include <iostream>
 
-WQUF::WQUF() {}
 
 WQUF::WQUF(int n)
 {
