@@ -13,23 +13,16 @@ all: main.x
 
 sanitizers: mainStz.x
 
-debug: all
-	$(CXX) $(CXXFLAGS) -ggdb $(FILES)
-	gdb -tui --args ./a.out 39 0.4 3
+debug: main.x
+	gdb -tui --args $^ 39 0.4 3
 
-valgrid: all
-	valgrind $(VALGRINDFLAGS) ./a.out 1 0.4 20
+valgrind: main.x
+	valgrind $(VALGRINDFLAGS) ./$(TARGET) 1 0.4 20
 
-# test:Fill.cpp percolation.cpp WeightedQuickUnionUF.cpp percolation_test.cpp
-# 	$(CXX) -c Fill.cpp percolation.cpp WeightedQuickUnionUF.cpp
-# 	$(CXX) $$(pkg-config --cflags catch2) -c percolation_test.cpp
-# 	$(CXX) WeightedQuickUnionUF.o percolation.o Fill.o percolation_test.o -o percolation_test.x
-# 	./percolation_test.x
-
-test: percolation_test.x
+test: $(TEST).x
 	./$<
 
-percolation_test.x: percolation_test.o $(FILES)
+$(TEST).x: $(TEST).o $(FILES)
 	$(CXX) $^ -o $@
 
 
@@ -40,11 +33,11 @@ mainStz.x: main.o $(FILES)
 main.x: main.o $(FILES)
 	$(CXX) $^ -o $@
 
-percolation_test.o: $(TEST_FILE)
-	$(CXX) $$(pkg-config --cflags catch2) -c $<
+$(TEST).o: $(TEST_FILE)
+	$(CXX) $(CXXFLAGS) $$(pkg-config --cflags catch2) -c $<
 
 %.o: %.cpp
-	$(CXX) -c $<
+	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
 	rm -rf *.x a.out *.x.* *.o
