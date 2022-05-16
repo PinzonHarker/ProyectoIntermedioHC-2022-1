@@ -1,25 +1,43 @@
-CXX=g++
-CXXFLAGS=-std=c++17 -g
-SANITFLAGS=-fsanitize=address -fsanitize=leak -fsanitize=undefined
+CXX= g++
+CXXFLAGS= -std=c++17 -g
+SANITFLAGS= -fsanitize=address -fsanitize=leak -fsanitize=undefined
 VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 
-all: main.cpp percolation.cpp WeightedQuickUnionUF.cpp Fill.cpp
-	$(CXX) $(CXXFLAGS) main.cpp percolation.cpp WeightedQuickUnionUF.cpp Fill.cpp
+TARGET = main.x
+FILES = percolation.o WeightedQuickUnionUF.o Fill.o
+TEST = percolation_test
+TEST_FILE = ../tests/$(TEST).cpp
 
-sanitizers: main.cpp percolation.cpp WeightedQuickUnionUF.cpp Fill.cpp
-	$(CXX) $(CXXFLAGS) $(SANITFLAGS) main.cpp percolation.cpp WeightedQuickUnionUF.cpp Fill.cpp
 
-debug:all
-	$(CXX) -g -ggdb main.cpp percolation.cpp WeightedQuickUnionUF.cpp Fill.cpp
-	gdb -tui --args ./a.out 39 0.4 3
+all: main.x
 
-valgrid:all
-	valgrind $(VALGRINDFLAGS) ./a.out 1 0.4 20
+sanitizers: mainStz.x
 
-test:Fill.cpp percolation.cpp WeightedQuickUnionUF.cpp percolation_test.cpp
-	g++ -c Fill.cpp percolation.cpp WeightedQuickUnionUF.cpp
-	g++ $$(pkg-config --cflags catch2) -c percolation_test.cpp
-	g++ WeightedQuickUnionUF.o percolation.o Fill.o percolation_test.o -o percolation_test.x
-	./percolation_test.x
+debug: main.x
+	gdb -tui --args $^ 39 0.4 3
+
+valgrind: main.x
+	valgrind $(VALGRINDFLAGS) ./$(TARGET) 1 0.4 20
+
+test: $(TEST).x
+	./$<
+
+$(TEST).x: $(TEST).o $(FILES)
+	$(CXX) $^ -o $@
+
+
+mainStz.x: main.o $(FILES)
+	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
+# necesita banderas -g?
+
+main.x: main.o $(FILES)
+	$(CXX) $^ -o $@
+
+$(TEST).o: $(TEST_FILE)
+	$(CXX) $(CXXFLAGS) $$(pkg-config --cflags catch2) -c $<
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $<
+
 clean:
-	rm -rf *.x a.out *.x.*
+	rm -rf *.x a.out *.x.* *.o
