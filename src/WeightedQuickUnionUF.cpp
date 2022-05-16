@@ -1,5 +1,5 @@
+#include "../libs/WeightedQuickUnionUF.h"
 #include <vector>
-#include "WeightedQuickUnionUF.h"
 #include <iostream>
 
 

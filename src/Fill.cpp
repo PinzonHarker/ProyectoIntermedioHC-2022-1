@@ -1,6 +1,6 @@
-#include "Fill.h"
+#include "../libs/Fill.h"
+#include "../libs/percolation.h"
 #include <random>
-#include "percolation.h"
 #include <string>
 
 
