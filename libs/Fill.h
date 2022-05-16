@@ -1,6 +1,7 @@
 #pragma once
-#include <vector>
+
 #include "percolation.h"
+#include <vector>
 #include <string>
 
 class Fill

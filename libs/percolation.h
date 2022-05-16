@@ -1,6 +1,7 @@
 #pragma once
-#include <vector>
+
 #include "WeightedQuickUnionUF.h"
+#include <vector>
 
 class Percolation
 {
