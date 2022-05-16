@@ -11,9 +11,11 @@ private:
   void validate(int p);
 
 public:
-  WQUF(int n);
   int getCount();
+
+  WQUF ();
+  WQUF(int n);
   int find(int p);
   void myUnion(int p, int q);
-  
+
 };

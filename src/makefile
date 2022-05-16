@@ -42,4 +42,7 @@ $(TEST).o: $(TEST_FILE)
 	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
+	rm -rf *.x *.o
+
+cleanall:
 	rm -rf *.x *.out *.o
