@@ -4,8 +4,8 @@ SANITFLAGS= -fsanitize=address -fsanitize=leak -fsanitize=undefined
 VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 
 TARGET = main.x
-FILES = percolation.o WeightedQuickUnionUF.o Fill.o
-TEST = percolation_test
+FILES = Percolation.o WQUF.o Fill.o
+TEST = PercolationTest
 TEST_FILE = ../tests/$(TEST).cpp
 
 

@@ -1,5 +1,5 @@
 #include "../libs/percolation.h"
-#include "../libs/WeightedQuickUnionUF.h"
+#include "../libs/WQUF.h"
 #include <vector>
 #include <random>
 
@@ -9,8 +9,8 @@ Percolation::Percolation(int n)
 {
   this->size = n;
 
-  this->qu = WeightedQuickUnionUF(n * n + 2);
-  this->quT = WeightedQuickUnionUF(n * n + 2);
+  this->qu = WQUF(n * n + 2);
+  this->quT = WQUF(n * n + 2);
 
   for (int i = 0; i < n * n; i++)
   {
@@ -26,7 +26,7 @@ int Percolation::getSize()
 {
   return size;
 }
-WeightedQuickUnionUF Percolation::getQu()
+WQUF Percolation::getQu()
 {
   return qu;
 }
@@ -99,7 +99,7 @@ void Percolation::open(int index)
     quT.myUnion(index, size * size + 1);
   }
 }
-void Percolation::setQu(WeightedQuickUnionUF qu)
+void Percolation::setQu(WQUF qu)
 {
   this->qu = qu;
 }

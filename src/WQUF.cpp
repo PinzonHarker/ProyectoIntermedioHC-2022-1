@@ -1,10 +1,10 @@
-#include "../libs/WeightedQuickUnionUF.h"
+#include "../libs/WQUF.h"
 #include <vector>
 #include <iostream>
 
-WeightedQuickUnionUF::WeightedQuickUnionUF() {}
+WQUF::WQUF() {}
 
-WeightedQuickUnionUF::WeightedQuickUnionUF(int n)
+WQUF::WQUF(int n)
 {
   count = n;
   for (int i = 0; i < n; i++)
@@ -14,18 +14,18 @@ WeightedQuickUnionUF::WeightedQuickUnionUF(int n)
   }
 }
 
-int WeightedQuickUnionUF::getCount()
+int WQUF::getCount()
 {
   return count;
 }
-int WeightedQuickUnionUF::find(int p)
+int WQUF::find(int p)
 {
   validate(p);
   while (p != parent[p])
     p = parent[p];
   return p;
 }
-void WeightedQuickUnionUF::validate(int p)
+void WQUF::validate(int p)
 {
   int n = parent.size();
   if (p < 0 || p >= n)
@@ -35,7 +35,7 @@ void WeightedQuickUnionUF::validate(int p)
               << " " << p << std::endl;
   }
 }
-void WeightedQuickUnionUF::myUnion(int p, int q)
+void WQUF::myUnion(int p, int q)
 {
   int rootP = find(p);
   int rootQ = find(q);
