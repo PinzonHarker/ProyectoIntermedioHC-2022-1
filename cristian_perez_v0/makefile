@@ -11,10 +11,10 @@ sanitizers: main.cpp percolation.cpp WeightedQuickUnionUF.cpp Fill.cpp
 
 debug:all
 	$(CXX) -g -ggdb main.cpp percolation.cpp WeightedQuickUnionUF.cpp Fill.cpp
-	gdb -tui --args ./a.out 1 0.5 20
+	gdb -tui --args ./a.out 39 0.4 3
 
 valgrid:all
-	valgrind $(VALGRINDFLAGS) ./a.out 1 0.5 20
+	valgrind $(VALGRINDFLAGS) ./a.out 1 0.4 20
 
 test:Fill.cpp percolation.cpp WeightedQuickUnionUF.cpp percolation_test.cpp
 	g++ -c Fill.cpp percolation.cpp WeightedQuickUnionUF.cpp

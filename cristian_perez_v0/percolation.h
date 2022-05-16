@@ -10,6 +10,7 @@ private:
   bool end = true;
   std::vector<bool> state;//estados 
   WeightedQuickUnionUF qu;//algoritmo find-union
+  WeightedQuickUnionUF quT;
   int size;
 
 public:
@@ -19,6 +20,7 @@ public:
   int getSize();
   WeightedQuickUnionUF getQu();
   void setQu(WeightedQuickUnionUF qu);
+  void setQuT(WeightedQuickUnionUF quT);
   std::vector<bool> getState();
   void setState(std::vector<bool> state);
   void open(int index);
