@@ -9,10 +9,13 @@ void main (void){
   double p =0.1;
   void N=32;
 
+
+
 double counter =0.1;
 
 //para tamaños de matrices n=32,64,128...
 //varia el tamaño de la matriz
+
 
 for(int ii=1;ii==4;ii++){
   N=2*N;
@@ -35,11 +38,11 @@ auto promedio =suma/30
 //vector guarda la desviacion estandar para N fijo
 std::vector<int> desviacion(30,0);
 for (int tt; tt<30;tt++){
-T[tt]=sqrt(std::pow((TC[ii]-promedio),2)/2);
+desviacion[tt]=sqrt(std::pow((TC[ii]-promedio),2)/2);
 }
-
+// imprime el tamaño, el promedio y la desviacion estandar
 for (int tt; tt<30;tt++){
-std::cout << N*N << TC[jj]/N<<desviacion[jj]<<'\n';;
+std::cout << N*N <<promedio<< TC[jj]/N<<desviacion[jj]<<'\n';;
 }
 
 
