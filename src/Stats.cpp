@@ -35,11 +35,11 @@ auto promedio =suma/30
 //vector guarda la desviacion estandar para N fijo
 std::vector<int> desviacion(30,0);
 for (int tt; tt<30;tt++){
-T[tt]=sqrt(std::pow((TC[ii]-promedio),2)/2;
+T[tt]=sqrt(std::pow((TC[ii]-promedio),2)/2);
 }
 
 for (int tt; tt<30;tt++){
-std::cout << N*N << TC[jj]<<desviacion[jj]<<'\n';;
+std::cout << N*N << TC[jj]/N<<desviacion[jj]<<'\n';;
 }
 
 
