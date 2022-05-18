@@ -8,14 +8,21 @@ void main (void){
 
 double counter =0.1;
 
-//
+//para tamaños de matrices n=32,64,128...
 for(int kk=1;ii==4;jj++){
   N=2*N;
 for (int ii=0 ;ii==512;ii++){
-  //
-  std::cout <<N*N<< (1-fill.getPercolation().numberOfOpenSites()/N) << '\n';
+  //indica el tamaño del cluster percolante en funcion de un tamaño n de la matriz
+
+//esta mal porque ese no es el tamaño del cluster
+  auto tamaño= fill.getPercolation().numberOfOpenSites();//guarda el tamaño del cluster
+
+
+  std::cout <<N*N<< (tamaño/N) << '\n';
 
 }
+
+
 
 std::std::cout <<'\t';
 }
