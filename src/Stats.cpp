@@ -1,7 +1,7 @@
 
-include "..\libs\Fill.h"
-include <vector>
-include <math
+#include "..\libs\Fill.h"
+#include <vector>
+#include <cmath>
 
 
 void main (void){
