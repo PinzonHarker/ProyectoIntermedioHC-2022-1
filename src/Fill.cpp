@@ -1,5 +1,5 @@
 #include "../libs/Fill.h"
-#include "../libs/percolation.h"
+#include "../libs/Percolation.h"
 #include <random>
 #include <string>
 
@@ -20,7 +20,7 @@ std::string Fill::toString(std::vector<bool> matrix)
 
 void Fill::fill(int seed, double p, int N)
 {
-  percolation = Percolation(N);
+  Percolation percolation = Percolation(N);
   std::mt19937 gen(seed);
   std::uniform_real_distribution<double> dis(0, 1);
   for (int i = 0; i < N * N; ++i)
