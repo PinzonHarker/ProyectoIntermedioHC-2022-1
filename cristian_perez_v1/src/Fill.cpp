@@ -1,5 +1,5 @@
 #include "../libs/Fill.h"
-#include "../libs/Percolation.h"
+#include "../libs/percolation.h"
 #include <random>
 #include <string>
 #include <iostream>
@@ -19,7 +19,7 @@ std::string Fill::toString(std::vector<int> matrix)
 }
 
 
-void Fill::fillAndUnion(int seed, double p, int N)
+void Fill::fill(int seed, double p, int N)
 {
   std::vector<int> rowTop;
   std::vector<int> rowBottom;
@@ -51,17 +51,14 @@ void Fill::fillAndUnion(int seed, double p, int N)
     }
   }
 
-  paintClusters();
+  //for(int pos:rowTop) percolation.virtualUnion(pos);
+  //for(int pos:rowBottom) percolation.virtualUnion(pos);
+  //for(int pos:colLeft) percolation.virtualUnion(pos);
+  //for(int pos:colRight) percolation.virtualUnion(pos);
 
-  clusters = percolation.getQu().getSize();
   
-  for(int pos:rowTop) percolation.virtualUnion(pos);
-  for(int pos:rowBottom) percolation.virtualUnion(pos);
-  for(int pos:colLeft) percolation.virtualUnion(pos);
-  for(int pos:colRight) percolation.virtualUnion(pos);
   
 }
-
 void Fill:: paintClusters(){
   for(int i =0; i<matrix.size(); i++){
     if(matrix[i] == 1){
@@ -71,23 +68,9 @@ void Fill:: paintClusters(){
   }
 }
 
-int Fill::findGreatestCluster(){
-
-  int greatest=0;
-  for(int cluster:clusters){
-    std::cout<<cluster<<" ";
-    if(cluster>greatest){
-      greatest = cluster;
-    }
-  }
-  std::cout<<std::endl;
-
-  return greatest;
-}
-
 bool Fill::percolate(int seed, double p, int N)
 {
-  fillAndUnion(seed, p, N);
+  fill(seed, p, N);
   return percolation.percolates();
 }
 
