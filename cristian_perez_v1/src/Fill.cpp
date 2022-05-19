@@ -2,8 +2,8 @@
 #include "../libs/percolation.h"
 #include <random>
 #include <string>
-
-std::string Fill::toString(std::vector<bool> matrix)
+#include <iostream>
+std::string Fill::toString(std::vector<int> matrix)
 {
   std::string sMatrix = "";
   for (int i = 0; i < sqrt(matrix.size()); i++)
@@ -40,7 +40,6 @@ void Fill::fill(int seed, double p, int N)
 }
 void Fill:: paintClusters(){
   for(int i =0; i<matrix.size(); i++){
-    std::cout<<percolation.getQu()
     if(matrix[i] == 1){
      
       matrix[i] = percolation.getQu().find(i);
@@ -54,7 +53,7 @@ bool Fill::percolate(int seed, double p, int N)
   return percolation.percolates();
 }
 
-std::vector<bool> Fill::getMatrix()
+std::vector<int> Fill::getMatrix()
 {
   return matrix;
 }
