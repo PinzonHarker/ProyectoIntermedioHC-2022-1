@@ -1,5 +1,8 @@
-#include "mean"
-#include "desv"
+#include "../libs/Stats.h"
+#include <vector>
+#include <numeric>
+#include <cmath>
+
 
 double mean( std::vector<double> &data) {
   return std::accumulate(data.begin(), data.end(), 0.0) / data.size();

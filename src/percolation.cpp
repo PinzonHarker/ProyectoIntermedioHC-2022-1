@@ -1,4 +1,4 @@
-#include "../libs/percolation.h"
+#include "../libs/Percolation.h"
 #include "../libs/WQUF.h"
 #include <vector>
 #include <random>
