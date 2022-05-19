@@ -1,5 +1,4 @@
 #pragma once
-
 #include "WQUF.h"
 #include <vector>
 
@@ -27,6 +26,7 @@ public:
   void open(int index);
   bool isOpen(int index);
   bool isFull(int index);
+  void virtualUnion(int index);
   int numberOfOpenSites();
   bool percolates();
   void fill(int seed, double p, int n);

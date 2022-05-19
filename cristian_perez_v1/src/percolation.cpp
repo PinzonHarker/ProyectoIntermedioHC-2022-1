@@ -78,6 +78,29 @@ void Percolation::open(int index)
     }
   }
 
+  /*if (index < size)
+  {
+
+    qu.myUnion(index, size * size);
+  }
+  if (index % size == 0)
+  {
+
+    quT.myUnion(index, size * size);
+  }
+  if (index >= size * (size - 1))
+  {
+
+    qu.myUnion(index, size * size + 1);
+  }
+  if (index % size == size - 1)
+  {
+
+    quT.myUnion(index, size * size + 1);
+  }*/
+}
+
+void Percolation::virtualUnion(int index){
   if (index < size)
   {
 
@@ -99,6 +122,9 @@ void Percolation::open(int index)
     quT.myUnion(index, size * size + 1);
   }
 }
+
+
+
 void Percolation::setQu(WQUF qu)
 {
   this->qu = qu;

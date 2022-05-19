@@ -17,6 +17,7 @@ int main(int agrc, char *argv[])
   std::cout << "Percola: " << fill.percolate(seed, p, N) << std::endl;
   std::cout << "Sitios libres: " << fill.getPercolation().numberOfOpenSites() << std::endl;
   // std::cout<<"Percola: "<<fill.percolate(seed, p, N)<<std::endl;
+  fill.paintClusters();
   std::cout << fill.toString(fill.getMatrix()) << std::endl;
   std::cout << std::endl;
 
