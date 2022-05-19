@@ -108,7 +108,6 @@ void Percolation::virtualUnion(int index){
   }
   if (index % size == 0)
   {
-
     quT.myUnion(index, size * size);
   }
   if (index >= size * (size - 1))
