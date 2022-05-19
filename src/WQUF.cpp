@@ -63,3 +63,6 @@ void WQUF::myUnion(int p, int q)
   }
   count--;
 }
+std::vector<int> WQUF::getSize(){
+  return size;
+}
