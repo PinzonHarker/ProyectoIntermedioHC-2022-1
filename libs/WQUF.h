@@ -11,11 +11,11 @@ private:
   void validate(int p);
 
 public:
+  
   int getCount();
-
   WQUF ();
   WQUF(int n);
   int find(int p);
   void myUnion(int p, int q);
-
+  std::vector<int> getSize();
 };

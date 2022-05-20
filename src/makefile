@@ -4,27 +4,53 @@ CXXFLAGS= -std=c++17 -g
 SANITFLAGS= -fsanitize=address -fsanitize=leak -fsanitize=undefined
 VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 
+SIZES = 32 64 128 256 512
+
 TARGET = main.x
 FILES = Percolation.o WQUF.o Fill.o
-TEST = WQUFTest
-TEST_FILE = ../tests/$(TEST).cpp
-
+TEST1 = PercolationTest
+TEST1_FILE = ../tests/$(TEST1).cpp
+TEST2 = WQUFTest
+TEST2_FILE = ../tests/$(TEST2).cpp
 
 all: main.x
 
-sanitizers: mainStz.x
+first: FirstMain.x
+	for L in $(SIZES); do \
+		./$< 0 10 $$L > $$L.dat; \
+	done
+
+simul: Simul.x
+	./$< 0 0.6 4
+
+report: report.pdf
+
+profile:
 
 debug: main.x
 	gdb -tui --args $^ 39 0.4 3
 
+plot: plot.pdf
+	gnuplot plot.gp
+
+sanitizers: mainStz.x
+
 valgrind: main.x
 	valgrind $(VALGRINDFLAGS) ./$(TARGET) 1 0.4 20
 
-test: $(TEST).x
+test: $(TEST1).x $(TEST2).x
 	./$<
+	./$(TEST2).x
 
-$(TEST).x: $(TEST).o $(FILES)
+Simul.x: Simul.o $(FILES)
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
+$(TEST1).x: $(TEST1).o $(FILES)
 	$(CXX) $^ -o $@
+
+$(TEST2).x: $(TEST2).o $(FILES)
+	$(CXX) $^ -o $@
+
 
 
 mainStz.x: main.o $(FILES)
@@ -34,15 +60,20 @@ mainStz.x: main.o $(FILES)
 main.x: main.o $(FILES)
 	$(CXX) $^ -o $@
 
+FirstMain.x: FirstMain.o $(FILES)
+	$(CXX) -fopenmp $^ -o $@
+
+
 # We assume spack on path
-$(TEST).o: $(TEST_FILE)
+$(TEST1).o: $(TEST1_FILE)
+	$(CXX) $$(pkg-config --cflags catch2) -c $<
+
+$(TEST2).o: $(TEST2_FILE)
 	$(CXX) $$(pkg-config --cflags catch2) -c $<
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $<
 
+.PHONY: clean
 clean:
-	rm -rf *.x *.o
-
-cleanall:
-	rm -rf *.x *.out *.o
+	rm -f *.x *.o *~
