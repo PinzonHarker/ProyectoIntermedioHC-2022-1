@@ -7,7 +7,7 @@ int main(int agrc, char *argv[])
 
   // std::vector<int> grid(N*N);
 
-  std::cout << "1. Seed= " << argv[1] << " 2. Probabilidad = " << argv[2] << " 3. Número de matrices a probar" << argv[3] << std::endl;
+  std::cout << "1. Seed= " << argv[1] << " 2. Probabilidad = " << argv[2] << " 3. Tamaño de la matriz" << argv[3] << std::endl;
 
   int seed = std::atoi(argv[1]);
   float p = std::atof(argv[2]);

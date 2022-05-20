@@ -33,8 +33,7 @@ int main(int argc, char **argv)
         for (int j = 0; j < M; j++)
         {
             k = 0;
-            fill.percolate(j, p, L);
-            if (fill.findGreatestCluster() > 0)
+            if (cluster[j] > 0)
             {
                 k = k + 1;
             }

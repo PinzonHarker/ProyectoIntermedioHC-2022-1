@@ -54,7 +54,7 @@ void Fill::fillAndUnion(int seed, double p, int L)
     }
   }
 
-  paintClusters();
+  // paintClusters();
 
   clusters = percolation.getQu().getSize();
 
@@ -68,18 +68,19 @@ void Fill::fillAndUnion(int seed, double p, int L)
     percolation.virtualUnion(pos);
 }
 
-void Fill::paintClusters()
-{
-  for (int i = 0; i < matrix.size(); i++)
-  {
-    if (matrix[i] == 1)
-    {
+// void Fill::paintClusters()
+// {
+//   for (int i = 0; i < matrix.size(); i++)
+//   {
+//     if (matrix[i] == 1)
+//     {
 
-      matrix[i] = percolation.getQu().find(i);
-    }
-  }
-}
+//       matrix[i] = percolation.getQu().find(i);
+//     }
+//   }
+// }
 
+// Tiene que se siempre que percole este cluster.
 int Fill::findGreatestCluster()
 {
 
