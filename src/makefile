@@ -6,7 +6,7 @@ VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 
 TARGET = main.x
 FILES = Percolation.o WQUF.o Fill.o
-TEST = WQUFTest
+TEST = PercolationTest
 TEST_FILE = ../tests/$(TEST).cpp
 
 
@@ -15,7 +15,7 @@ all: main.x
 sanitizers: mainStz.x
 
 debug: main.x
-	gdb -tui --args $^ 39 0.4 3
+	gdb -tui --args $^ 2 0.5 7
 
 valgrind: main.x
 	valgrind $(VALGRINDFLAGS) ./$(TARGET) 1 0.4 20

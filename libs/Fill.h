@@ -1,6 +1,6 @@
 #pragma once
 
-#include "percolation.h"
+#include "Percolation.h"
 #include <vector>
 #include <string>
 

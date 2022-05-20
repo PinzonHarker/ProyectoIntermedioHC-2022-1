@@ -1,5 +1,5 @@
 #include "../libs/Fill.h"
-#include "../libs/percolation.h"
+#include "../libs/Percolation.h"
 #include <random>
 #include <string>
 #include <iostream>
@@ -55,11 +55,18 @@ void Fill::fillAndUnion(int seed, double p, int N)
 
   clusters = percolation.getQu().getSize();
   
-  for(int pos:rowTop) percolation.virtualUnion(pos);
-  for(int pos:rowBottom) percolation.virtualUnion(pos);
-  for(int pos:colLeft) percolation.virtualUnion(pos);
-  for(int pos:colRight) percolation.virtualUnion(pos);
-  
+  for(int pos:rowTop){
+    percolation.virtualUnion(pos);
+  }
+  for(int pos:rowBottom){
+    percolation.virtualUnion(pos);
+  }
+  for(int pos:colLeft){
+    percolation.virtualUnion(pos);
+  }
+  for(int pos:colRight){
+    percolation.virtualUnion(pos);
+  }
 }
 
 void Fill:: paintClusters(){
