@@ -6,7 +6,7 @@ VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 
 TARGET = main.x
 FILES = Percolation.o WQUF.o Fill.o
-TEST = WQUFTest
+TEST = PercolationTest
 TEST_FILE = ../tests/$(TEST).cpp
 
 
