@@ -4,6 +4,8 @@ CXXFLAGS= -std=c++17 -g
 SANITFLAGS= -fsanitize=address -fsanitize=leak -fsanitize=undefined
 VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 
+SIZES = 32 64 128 256 512
+
 TARGET = main.x
 FILES = Percolation.o WQUF.o Fill.o
 TEST1 = PercolationTest
@@ -11,8 +13,12 @@ TEST1_FILE = ../tests/$(TEST1).cpp
 TEST2 = WQUFTest
 TEST2_FILE = ../tests/$(TEST2).cpp
 
-
 all: main.x
+
+first: FirstMain.x
+	for L in $(SIZES); do \
+		./$< 0 10 $$L > $$L.dat; \
+	done
 
 simul: Simul.x
 	./$< 0 0.6 4
@@ -24,6 +30,8 @@ profile:
 debug: main.x
 	gdb -tui --args $^ 39 0.4 3
 
+plot: plot.pdf
+	gnuplot plot.gp
 
 sanitizers: mainStz.x
 
@@ -43,12 +51,18 @@ $(TEST1).x: $(TEST1).o $(FILES)
 $(TEST2).x: $(TEST2).o $(FILES)
 	$(CXX) $^ -o $@
 
+
+
 mainStz.x: main.o $(FILES)
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
 # necesita banderas -g?
 
 main.x: main.o $(FILES)
 	$(CXX) $^ -o $@
+
+FirstMain.x: FirstMain.o $(FILES)
+	$(CXX) $^ -o $@
+
 
 # We assume spack on path
 $(TEST1).o: $(TEST1_FILE)

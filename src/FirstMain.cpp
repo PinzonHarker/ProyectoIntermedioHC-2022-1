@@ -1,4 +1,5 @@
 #include "../libs/Fill.h"
+#include "../libs/Stats.h"
 #include "Stats.cpp"
 #include <iostream>
 #include <vector>
@@ -23,7 +24,7 @@ int main(int argc, char const *argv[])
     std::cout.precision(7);
     std::cout.setf(std::ios::scientific);
 
-    //std::vector<double> probability; // Probabilidad de percolación respecto cada elemento
+    std::vector<double> probability; // Probabilidad de percolación respecto cada elemento
 
     // Variaremos p para mostrar un rango de valores donde es percolante y donde no
     for (int ii = 0; ii < limit; ii++)
