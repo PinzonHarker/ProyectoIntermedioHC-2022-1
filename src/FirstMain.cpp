@@ -1,5 +1,4 @@
 #include "../libs/Fill.h"
-#include "../libs/Stats.h"
 #include "Stats.cpp"
 #include <iostream>
 #include <vector>
@@ -17,14 +16,14 @@ int main(int argc, char const *argv[])
     int L = std::atoi(argv[3]);    // L es el tamaño de la matriz percolante.
     double p = 0;                  // Probabilidad, la variaremos
 
-    double step = 0.1;
+    double step = 1.0/100;
     double limit = 1.0 / step;
-    int count = 0;
+    double count = 0.0;
 
     std::cout.precision(7);
     std::cout.setf(std::ios::scientific);
 
-    std::vector<double> PP = {}; // Probabilidad de percolación respecto cada elemento
+    //std::vector<double> probability; // Probabilidad de percolación respecto cada elemento
 
     // Variaremos p para mostrar un rango de valores donde es percolante y donde no
     for (int ii = 0; ii < limit; ii++)
@@ -36,11 +35,9 @@ int main(int argc, char const *argv[])
             if (fill.percolate(seed, p, L))
                 count++;
         }
-        PP.push_back(count/M);
+        std::cout << p << "\t" << count/M << std::endl;
         count = 0;
     }
-
-    std::cout << mean(PP);
 
     return EXIT_SUCCESS;
 }

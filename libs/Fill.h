@@ -16,7 +16,7 @@ private:
 public:
   std::vector<int> getMatrix();
   Percolation getPercolation();
-  bool percolate(int seed, double probability, int L);
+  bool percolate(int, double, int);
   std::string toString(std::vector<int> vector);  
   void paintClusters();
   int findGreatestCluster();
