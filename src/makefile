@@ -61,7 +61,7 @@ main.x: main.o $(FILES)
 	$(CXX) $^ -o $@
 
 FirstMain.x: FirstMain.o $(FILES)
-	$(CXX) $^ -o $@
+	$(CXX) -fopenmp $^ -o $@
 
 
 # We assume spack on path
@@ -76,4 +76,4 @@ $(TEST2).o: $(TEST2_FILE)
 
 .PHONY: clean
 clean:
-	rm -f *.x *.o *~ *.out
+	rm -f *.x *.o *~

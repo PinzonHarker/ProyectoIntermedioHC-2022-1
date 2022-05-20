@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
     int L = std::atoi(argv[3]);    // L es el tamaño de la matriz percolante.
     double p = 0;                  // Probabilidad, la variaremos
 
-    double step = 1.0/100;
+    double step = 1.0/1000;
     double limit = 1.0 / step;
     double count = 0.0;
 
