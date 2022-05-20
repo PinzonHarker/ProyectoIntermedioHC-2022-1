@@ -3,6 +3,9 @@
 #include <random>
 #include <string>
 #include <iostream>
+
+
+
 std::string Fill::toString(std::vector<int> matrix)
 {
   std::string sMatrix = "";
@@ -18,16 +21,14 @@ std::string Fill::toString(std::vector<int> matrix)
   return sMatrix;
 }
 
+Fill::Fill(int N)
+{
+  percolation = Percolation(N);
+}
 
 void Fill::fillAndUnion(int seed, double p, int N)
 {
-  std::vector<int> rowTop;
-  std::vector<int> rowBottom;
-  std::vector<int> colLeft;
-  std::vector<int> colRight;
 
-
-  percolation = Percolation(N);
   std::mt19937 gen(seed);
   std::uniform_real_distribution<double> dis(0, 1);
   for (int i = 0; i < N * N; ++i)
@@ -51,9 +52,12 @@ void Fill::fillAndUnion(int seed, double p, int N)
     }
   }
 
-  paintClusters();
-
   clusters = percolation.getQu().getSize();
+  
+}
+
+void Fill::virtualUnion(){
+  
   
   for(int pos:rowTop){
     percolation.virtualUnion(pos);
@@ -67,12 +71,12 @@ void Fill::fillAndUnion(int seed, double p, int N)
   for(int pos:colRight){
     percolation.virtualUnion(pos);
   }
+  
 }
 
 void Fill:: paintClusters(){
   for(int i =0; i<matrix.size(); i++){
-    if(matrix[i] == 1){
-     
+    if(matrix[i] == 1){     
       matrix[i] = percolation.getQu().find(i);
     }
   }
@@ -95,6 +99,8 @@ int Fill::findGreatestCluster(){
 bool Fill::percolate(int seed, double p, int N)
 {
   fillAndUnion(seed, p, N);
+  paintClusters();
+  virtualUnion();
   return percolation.percolates();
 }
 

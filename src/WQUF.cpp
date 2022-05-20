@@ -7,8 +7,8 @@ WQUF::WQUF() {}
 WQUF::WQUF(int n)
 {
   if(n < 0){
-    // std::cout<<"The value must into the range."<<" "<<n<<std::endl;
-    //throw std::invalid_argument("The value must into the range.");
+    std::cout<<"The value must into the range."<<" "<<n<<std::endl;
+    throw std::invalid_argument("The value must into the range.");
   }
   count = n;
   for (int i = 0; i < n; i++)
@@ -43,7 +43,7 @@ void WQUF::validate(int p)
   if (p < 0 || p >= n)
   {
     std::cout<<"The value must into the range."<<" "<<p<<std::endl;
-    //throw std::invalid_argument("The value must into the range.");
+    throw std::invalid_argument("The value must into the range.");
   }
 }
 void WQUF::myUnion(int p, int q)

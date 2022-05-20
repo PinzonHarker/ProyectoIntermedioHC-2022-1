@@ -13,11 +13,13 @@ int main(int agrc, char *argv[])
   float p = std::atof(argv[2]);
   int N = std::atoi(argv[3]);
 
-  Fill fill;
+  Fill fill = Fill(N), fill2 = Fill(N);
   
-  std::cout << "Percola: " << fill.percolate(seed, p, N) << std::endl;
+
+  std::cout << "Percola: " << fill.percolate(seed,p,N) << std::endl;
   std::cout << "Sitios libres: " << fill.getPercolation().numberOfOpenSites() << std::endl;
   //  std::cout<< "El mayor cluster percolanter tiene tamaño "<<fill.findGreatestCluster()<<std::endl;
+  fill.paintClusters();
   std::cout << fill.toString(fill.getMatrix()) << std::endl;
   std::cout << std::endl;
 
