@@ -2,6 +2,10 @@
 #include <vector>
 #include <iostream>
 
+/**
+ * Default constructor don't Initializes the weigthed quick union-find
+ */
+
 WQUF::WQUF() {}
 
 /**
@@ -31,7 +35,13 @@ int WQUF::getCount()
 {
   return count;
 }
-
+/**
+     * Returns the root or parent element of the set containing element {@code p}.
+     *
+     * @param  p an element
+     * @return the root or parent element of the set containing {@code p}
+     * @throws IllegalArgumentException unless {@code 0 <= p < n}
+     */
 int WQUF::find(int p)
 {
   validate(p);
@@ -46,6 +56,13 @@ int WQUF::find(int p)
   }
   return p;
 }
+
+/**
+     * Valide if {@code 0 <= p < n} otherwise throw exception
+     *
+     * @param  p an element
+     * @throws IllegalArgumentException unless {@code 0 <= p < n}
+     */
 void WQUF::validate(int p)
 {
   int n = parent.size();
@@ -55,6 +72,15 @@ void WQUF::validate(int p)
     throw std::invalid_argument("The value must into the range.");
   }
 }
+/**
+     * Merges the set containing element {@code p} with the 
+     * the set containing element {@code q}.
+     *
+     * @param  p one element
+     * @param  q the other element
+     * @throws IllegalArgumentException unless
+     *         both {@code 0 <= p < n} and {@code 0 <= q < n}
+     */
 void WQUF::myUnion(int p, int q)
 {
   int rootP = find(p);
