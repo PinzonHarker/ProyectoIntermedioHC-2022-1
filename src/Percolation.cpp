@@ -1,4 +1,4 @@
-#include "../libs/percolation.h"
+#include "../libs/Percolation.h"
 #include "../libs/WQUF.h"
 #include <vector>
 #include <random>
@@ -43,7 +43,7 @@ int Percolation::getSize()
 
 /**
  * @return qu object
-     */
+ */
 
 WQUF Percolation::getQu()
 {
@@ -105,6 +105,7 @@ void Percolation::open(int index)
     }
   }
 }
+
 /**                                                                                                                                                                                 
      * Merge the opens site {@code index} with the 
      * virtual nodes {@code n*n}, {@code n*n+1} in 
@@ -113,6 +114,7 @@ void Percolation::open(int index)
      *                                                                                                                                                                              
      * @param index of the element.                                                                                                                                                 
      */
+
 void Percolation::virtualUnion(int index){
   if (index < size)
   {
