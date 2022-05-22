@@ -121,22 +121,23 @@ void Fill:: paintClusters(){
   }
 }
 /**                                                                                                                                                                                 
- * Return the size of the greatest percolate cluster 
- * of the matrix vector 
+ * If the system percolate return the size of 
+ * the greatest percolate cluster of the matrix vector 
+ * and 1 otherwise  
  *
- * @return size greatest cluster  
+ * @return size greatest cluster if system percolate and 1 otherwise   
 */
 
 int Fill::findGreatestCluster(){
 
   int greatest=0;
   for(int cluster:clusters){
-    std::cout<<cluster<<" ";
+    //std::cout<<cluster<<" ";
     if(cluster>greatest){
       greatest = cluster;
     }
   }
-  std::cout<<std::endl;
+  //std::cout<<std::endl;
 
   return greatest;
 }

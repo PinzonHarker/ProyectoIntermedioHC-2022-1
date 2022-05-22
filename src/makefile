@@ -47,8 +47,10 @@ $(TESTWQUF).o: $(TEST_FILE_WQUF)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $<
 
-clean:
-	rm -rf *.x *.o
 
-cleanall:
-	rm -rf *.x *.out *.o
+.PHONY: clean
+clean:
+	rm -f *.o *~ *.x
+
+
+

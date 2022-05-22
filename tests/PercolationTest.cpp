@@ -67,3 +67,24 @@ TEST_CASE("Percolating various size matrix with probability p=1")
   Fill f8 = Fill(2);
   REQUIRE(f8.percolate(20, 1, 2) == true);
 }
+
+TEST_CASE("Greatest cluster for various matrix and probabilities")
+{
+
+  Fill f1 = Fill(16);
+  REQUIRE(f1.percolate(39, 1, 16) == true);
+  Fill f2 = Fill(14);
+  REQUIRE(f2.percolate(2, 1, 14) == true);
+  Fill f3 = Fill(12);
+  REQUIRE(f3.percolate(5, 1, 12) == true);
+  Fill f4 = Fill(10);
+  REQUIRE(f4.percolate(11, 1, 10) == true);
+  Fill f5 = Fill(8);
+  REQUIRE(f5.percolate(1, 1, 8) == true);
+  Fill f6 = Fill(6);
+  REQUIRE(f6.percolate(19, 1, 6) == true);
+  Fill f7 = Fill(4);
+  REQUIRE(f7.percolate(18, 1, 4) == true);
+  Fill f8 = Fill(2);
+  REQUIRE(f8.percolate(20, 1, 2) == true);
+}
