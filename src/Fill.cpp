@@ -5,6 +5,26 @@
 #include <iostream>
 
 
+/**                                                                                                                                                                                 
+ * Default constructo initializes the Fill object.
+ * Create a Percolation object with argument {@code N}.
+ *
+ * @throws IllegalArgumentException if {@code n < 0} 
+ */
+
+Fill::Fill(int N)
+{
+  percolation = Percolation(N);
+}
+
+
+/**
+ * Convert to string the {@code matrix} vector 
+ * 
+ * @params matrix representing sytem.
+ * @return the matrix vector with string
+ * to let visualize a matrix.
+ */
 
 std::string Fill::toString(std::vector<int> matrix)
 {
@@ -21,17 +41,25 @@ std::string Fill::toString(std::vector<int> matrix)
   return sMatrix;
 }
 
-Fill::Fill(int N)
-{
-  percolation = Percolation(N);
-}
+/**
+ * Fill the {@code matrix} vector with open elements, through
+ * a probalility {@code p} with uniform-real distribution and seed, also
+ * fill the vectors of boundarie rowTop, rowBottom., colLeft, colRight, 
+ * and finally initailize the vector clusters.  
+ *
+ * @params seed semilla of uniform-real distribution.
+ * @params p probabily to open site.
+ * @params n number of rows or columns
+ * throws IllegalArgumentException unles
+ * {@code 0 <= p < n*n-1};
+ */
 
-void Fill::fillAndUnion(int seed, double p, int N)
+void Fill::fillAndUnion(int seed, double p, int n)
 {
 
   std::mt19937 gen(seed);
   std::uniform_real_distribution<double> dis(0, 1);
-  for (int i = 0; i < N * N; ++i)
+  for (int i = 0; i < n; ++i)
   {
     float gen2 = dis(gen);
     if (gen2 <= p)
@@ -40,10 +68,10 @@ void Fill::fillAndUnion(int seed, double p, int N)
       matrix.push_back(1);
       percolation.open(i);
       	
-      if(i<N) rowTop.push_back(i);
-      if(i%N == 0) colLeft.push_back(i);
-      if(i%N == N-1) colRight.push_back(i);
-      if(i>= N*(N-1)) rowBottom.push_back(i);
+      if(i<n) rowTop.push_back(i);
+      if(i%n == 0) colLeft.push_back(i);
+      if(i%n == n-1) colRight.push_back(i);
+      if(i>= n*(n-1)) rowBottom.push_back(i);
       
     }
     else
@@ -55,6 +83,12 @@ void Fill::fillAndUnion(int seed, double p, int N)
   clusters = percolation.getQu().getSize();
   
 }
+
+/**                                                                                                                                                                                 
+ * Unionl the vectors of boundarie rowTop, rowBottom., colLeft, colRight,                                                                                                           
+ * whit virtuals elements {@code n*n} and {@code n*n+1}
+ */                                                                                                                                                                                  
+
 
 void Fill::virtualUnion(){
   
@@ -74,6 +108,11 @@ void Fill::virtualUnion(){
   
 }
 
+/**                                                                                                                                                                                 
+ * Fill the element {@code i} with parent or root to show 
+ * the percolant clusters in the matrix vector 
+ */
+
 void Fill:: paintClusters(){
   for(int i =0; i<matrix.size(); i++){
     if(matrix[i] == 1){     
@@ -81,6 +120,12 @@ void Fill:: paintClusters(){
     }
   }
 }
+/**                                                                                                                                                                                 
+ * Return the size of the greatest percolate cluster 
+ * of the matrix vector 
+ *
+ * @return size greatest cluster  
+*/
 
 int Fill::findGreatestCluster(){
 
@@ -96,6 +141,21 @@ int Fill::findGreatestCluster(){
   return greatest;
 }
 
+/**                                                                                                                                                                                 
+ * check si the matrix vector percolate and call
+ * fillAndUnion,  paintClusters, virtualUnion methods.
+ *                                                                                                                                                                                  
+ * @params seed semilla of uniform-real distribution.
+ * argument fillAndUnion method .
+ * @params p probabily to open site argument fillAndUnion 
+ * method.                                                                                                                                                  
+ * @params n number of rows or columns 
+ * argument fillAndUnion method  
+ * @return true 
+ * @throws IllegalArgumentException unles                                                                                                                                           
+ * {@code 0 <= p < n*n-1};
+                                                                                                                                                          
+ */
 bool Fill::percolate(int seed, double p, int N)
 {
   fillAndUnion(seed, p, N);
@@ -103,11 +163,20 @@ bool Fill::percolate(int seed, double p, int N)
   virtualUnion();
   return percolation.percolates();
 }
-
+/**                                                                                                                                                                                 
+ * Return {@code matrix} vector 
+ *                                                                                                                                                                                  
+ * @return {@code matrix} vector.
+*/
 std::vector<int> Fill::getMatrix()
 {
   return matrix;
 }
+/**                                                                                                                                                                                 
+ * return the Percolation object.
+ *                                                                                                                                                                                  
+ * @return Percolation object.                                                                                                                                                    
+*/
 Percolation Fill::getPercolation()
 {
   return percolation;
