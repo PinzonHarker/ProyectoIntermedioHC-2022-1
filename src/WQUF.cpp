@@ -4,6 +4,15 @@
 
 WQUF::WQUF() {}
 
+/**
+     * Initializes an the weigthed quick union-find data structure with
+     * {@code n} elements {@code 0} through {@code n-1}. 
+     * Initially, each element is in its own set.
+     *
+     * @param  n the number of elements
+     * @throws IllegalArgumentException if {@code n < 0}
+     */
+
 WQUF::WQUF(int n)
 {
   if(n < 0){
