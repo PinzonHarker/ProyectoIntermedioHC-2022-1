@@ -6,9 +6,10 @@ VALGRINDFLAGS= --tool=memcheck --track-origins=yes --leak-check=full
 
 TARGET = main.x
 FILES = Percolation.o WQUF.o Fill.o
-TEST = PercolationTest
-TEST_FILE = ../tests/$(TEST).cpp
-
+TESTPERCOLATION = PercolationTest
+TESTWQUF = WQUFTest
+TEST_FILE_PERCOLATION = ../tests/$(TESTPERCOLATION).cpp
+TEST_FILE_WQUF = ../tests/$(TESTWQUF).cpp
 
 all: main.x
 
@@ -20,12 +21,13 @@ debug: main.x
 valgrind: main.x
 	valgrind $(VALGRINDFLAGS) ./$(TARGET) 1 0.4 20
 
-test: $(TEST).x
-	./$<
+test: $(TESTWQUF).x ./$(TESTPERCOLATION).x
+	./$(TESTPERCOLATION).x
+	./$(TESTWQUF).x
 
-$(TEST).x: $(TEST).o $(FILES)
-	$(CXX) $^ -o $@
-
+$(TESTWQUF).x $(TESTPERCOLATION).x: $(TESTPERCOLATION).o $(TESTWQUF).o $(FILES)
+	$(CXX) $(TESTPERCOLATION).o $(FILES) -o $(TESTPERCOLATION).x
+	$(CXX) $(TESTWQUF).o $(FILES) -o $(TESTWQUF).x
 
 mainStz.x: main.o $(FILES)
 	$(CXX) $(CXXFLAGS) $(SANITFLAGS) $^ -o $@
@@ -35,7 +37,11 @@ main.x: main.o $(FILES)
 	$(CXX) $^ -o $@
 
 # We assume spack on path
-$(TEST).o: $(TEST_FILE)
+
+$(TESTPERCOLATION).o: $(TEST_FILE_PERCOLATION)
+	$(CXX) $$(pkg-config --cflags catch2) -c $<
+
+$(TESTWQUF).o: $(TEST_FILE_WQUF)
 	$(CXX) $$(pkg-config --cflags catch2) -c $<
 
 %.o: %.cpp

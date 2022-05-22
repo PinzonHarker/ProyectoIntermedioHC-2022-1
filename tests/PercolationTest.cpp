@@ -42,7 +42,7 @@ TEST_CASE("Percolating various size matrix with probability p=0")
   Fill f6 = Fill(6);
   REQUIRE(f6.percolate(19, 0, 6) == false);
   Fill f7 = Fill(4);
-  REQUIRE(f7.percolate(18, 0, 4 == false);
+  REQUIRE(f7.percolate(18, 0, 4) == false);
   Fill f8 = Fill(2);
   REQUIRE(f8.percolate(20, 0, 2) == false);
 }
@@ -63,7 +63,7 @@ TEST_CASE("Percolating various size matrix with probability p=1")
   Fill f6 = Fill(6);
   REQUIRE(f6.percolate(19, 1, 6) == true);
   Fill f7 = Fill(4);
-  REQUIRE(f7.percolate(18, 1, 4 == true);
+  REQUIRE(f7.percolate(18, 1, 4) == true);
   Fill f8 = Fill(2);
   REQUIRE(f8.percolate(20, 1, 2) == true);
 }
