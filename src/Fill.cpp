@@ -9,7 +9,7 @@
  * Default constructo initializes the Fill object.
  * Create a Percolation object with argument {@code N}.
  *
- * @throws IllegalArgumentException if {@code n < 0} 
+ * @throws IllegalArgumentException if {@code N < 0} 
  */
 
 Fill::Fill(int N)
@@ -59,7 +59,7 @@ void Fill::fillAndUnion(int seed, double p, int n)
 
   std::mt19937 gen(seed);
   std::uniform_real_distribution<double> dis(0, 1);
-  for (int i = 0; i < n; ++i)
+  for (int i = 0; i < n*n; ++i)
   {
     float gen2 = dis(gen);
     if (gen2 <= p)
