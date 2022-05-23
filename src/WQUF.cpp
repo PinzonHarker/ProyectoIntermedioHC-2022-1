@@ -28,6 +28,10 @@ WQUF::WQUF(int n)
   {
     parent.push_back(i);
     size.push_back(1);
+    rowTop.push_back(0);
+    rowBottom.push_back(0);
+    colLeft.push_back(0);
+    colRight.push_back(0);
   }
 }
 
@@ -83,6 +87,7 @@ void WQUF::validate(int p)
      */
 void WQUF::myUnion(int p, int q)
 {
+  
   int rootP = find(p);
   int rootQ = find(q);
   if (rootP == rootQ)
@@ -102,4 +107,24 @@ void WQUF::myUnion(int p, int q)
 }
 std::vector<int> WQUF::getSize(){
   return size;
+}
+
+short WQUF::isInBoundary(){
+
+  if(i<n) return 0; 
+  if(i%n == 0) return 1;
+  if(i%n == n-1) return 2; 
+  if(i>= n*(n-1)) return 3;
+  
+}
+
+void WQUF::putInBoundary(short boundary, int root, int index){
+
+  switch(boundary){
+  case 0: rowTop[index] = root;
+  case 1: colLeft[index] = root;
+  case 2: colRight[index] = root;
+  case 3: rowBottom[index] = root;
+  }
+
 }

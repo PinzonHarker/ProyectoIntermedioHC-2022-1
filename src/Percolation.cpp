@@ -186,8 +186,16 @@ int Percolation::numberOfOpenSites()
      * @return true if percolates, false otherwise.
      */
 
-bool Percolation::percolates()
+int Percolation::percolates()
 {
-  return qu.find(size * size) == qu.find(size * size + 1) ||
-         quT.find(size * size) == quT.find(size * size + 1);
+  int sizeGClusterP =0;
+  std::vector<int> clusters =  qu.getSize();
+  for(int element:clusters){
+    if(element>sizeGCluster && isOppositeBoundaries(element)){
+      sizeGClusterP = element;
+    }
+  }
+  return element;
+  /*return qu.find(size * size) == qu.find(size * size + 1) ||
+    quT.find(size * size) == quT.find(size * size + 1);*/
 }
