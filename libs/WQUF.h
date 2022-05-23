@@ -14,7 +14,7 @@ private:
   int count;
   void validate(int p);
   short isInBoundary(int p);
-  void putInBoundary(short, int, int);
+  void putInBoundary(short boundary, int p, int index);
   void pathCompression(int, int);
 public:
   
@@ -28,4 +28,5 @@ public:
   std::vector<int> getRowBottom();
   std::vector<int> getColLeft();
   std::vector<int> getColRight();
+
 };

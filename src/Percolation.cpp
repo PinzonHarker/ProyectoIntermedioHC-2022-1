@@ -23,8 +23,8 @@ Percolation::Percolation(int n)
 {
   this->size = n;
 
-  this->qu = WQUF(n * n + 2);
-  this->quT = WQUF(n * n + 2);
+  this->qu = WQUF(n);
+  // this->quT = WQUF(n * n + 2);
 
   for (int i = 0; i < n * n; i++)
   {
@@ -77,7 +77,7 @@ void Percolation::open(int index)
     { // down
 
       qu.myUnion(index, index + size);
-      quT.myUnion(index, index + size);
+      //quT.myUnion(index, index + size);
     }
   }
   if (index >= size)
@@ -86,7 +86,7 @@ void Percolation::open(int index)
     { // up
 
       qu.myUnion(index, index - size);
-      quT.myUnion(index, index - size);
+      // quT.myUnion(index, index - size);
     }
   }
   if (index % size != size - 1)
@@ -95,7 +95,7 @@ void Percolation::open(int index)
     { // right
 
       qu.myUnion(index, index + 1);
-      quT.myUnion(index, index + 1);
+      //quT.myUnion(index, index + 1);
     }
   }
   if (index % size != 0)
@@ -104,7 +104,7 @@ void Percolation::open(int index)
     { // left
 
       qu.myUnion(index, index - 1);
-      quT.myUnion(index, index - 1);
+      //      quT.myUnion(index, index - 1);
     }
   }
 }
@@ -194,19 +194,19 @@ int Percolation::percolates()
   int sizeGClusterP =0;
   std::vector<int> clusters =  qu.getSize();
   for(int element:clusters){
-    if(element>sizeGCluster && isInOppositeBoundaries(element)){
+    if(element>sizeGClusterP && isInOppositeBoundaries(element)){
       sizeGClusterP = element;
     }
   }
-  return element;
+  return sizeGClusterP;
   /*return qu.find(size * size) == qu.find(size * size + 1) ||
     quT.find(size * size) == quT.find(size * size + 1);*/
 }
 
 bool Percolation::isInOppositeBoundaries(int root){
-  for(int elementT:qu.getTopRow()){
+  for(int elementT:qu.getRowTop()){
     if(elementT == root){
-      for(int elementB:getBottomRow()){
+      for(int elementB:qu.getRowBottom()){
 	if(elementB == root){
 	  return true;
 	}
@@ -215,7 +215,7 @@ bool Percolation::isInOppositeBoundaries(int root){
   }
   for(int elementL:qu.getColLeft()){
     if(elementL == root){
-      for(int elementR:getBottomRow()){
+      for(int elementR:qu.getColRight()){
 	if(elementR == root){
           return true;
         }

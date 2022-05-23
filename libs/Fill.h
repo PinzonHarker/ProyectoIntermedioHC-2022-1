@@ -13,10 +13,10 @@ private:
   std::vector<int> clusters;
   Percolation percolation;
   void fillAndUnion(int, double, int);
-  std::vector<int> rowTop;
-  std::vector<int> rowBottom;
-  std::vector<int> colLeft;
-  std::vector<int> colRight;
+  //std::vector<int> rowTop;
+  // std::vector<int> rowBottom;
+  //std::vector<int> colLeft;
+  //std::vector<int> colRight;
   
 public:
 
@@ -26,7 +26,7 @@ public:
   bool percolate(int, double, int);
   std::string toString(std::vector<int> vector);  
   void paintClusters();
-  int findGreatestCluster();
-  void virtualUnion();
+  //int findGreatestCluster();
+  //void virtualUnion();
   
 };

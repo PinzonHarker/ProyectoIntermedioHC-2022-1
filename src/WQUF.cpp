@@ -24,10 +24,17 @@ WQUF::WQUF(int n)
     throw std::invalid_argument("The value must into the range.");
   }
   count = n;
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < n*n; i++)
   {
     parent.push_back(i);
     size.push_back(1);
+    rowTop.push_back(0);
+    rowBottom.push_back(0);
+    colLeft.push_back(0);
+    colRight.push_back(0);
+  }
+  for (int i = 0; i < n; i++)
+  {
     rowTop.push_back(0);
     rowBottom.push_back(0);
     colLeft.push_back(0);
@@ -66,9 +73,9 @@ void WQUF::pathCompression(int p, int root){
   {
     int newp = parent[p];
     parent[p] = root;
-    short boudary = isInBoundary(p);
+    short boundary = isInBoundary(p);
     if(boundary<4){
-      putInBoundary(boundary, root, index);
+      putInBoundary(boundary, root, p);
     }
     p = newp;
   }
@@ -122,8 +129,8 @@ std::vector<int> WQUF::getSize(){
   return size;
 }
 
-short WQUF::isInBoundary(){
-
+short WQUF::isInBoundary(int i){
+  int n = rowTop.size();
   if(i<n) return 0; 
   if(i%n == 0) return 1;
   if(i%n == n-1) return 2; 
@@ -140,4 +147,20 @@ void WQUF::putInBoundary(short boundary, int root, int index){
   case 3: rowBottom[index] = root;
   }
 
+}
+
+std::vector<int> WQUF::getRowTop(){
+  return rowTop;
+}
+
+std::vector<int> WQUF::getRowBottom(){
+  return rowBottom;
+}
+
+std::vector<int> WQUF::getColLeft(){
+  return colLeft;
+}
+
+std::vector<int> WQUF::getColRight(){
+  return colRight;
 }
