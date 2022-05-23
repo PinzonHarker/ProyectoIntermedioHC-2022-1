@@ -68,10 +68,10 @@ void Fill::fillAndUnion(int seed, double p, int n)
       matrix.push_back(1);
       percolation.open(i);
       	
-      if(i<n) rowTop.push_back(i);
-      if(i%n == 0) colLeft.push_back(i);
-      if(i%n == n-1) colRight.push_back(i);
-      if(i>= n*(n-1)) rowBottom.push_back(i);
+      // if(i<n) rowTop.push_back(i);
+      //if(i%n == 0) colLeft.push_back(i);
+      //if(i%n == n-1) colRight.push_back(i);
+      //if(i>= n*(n-1)) rowBottom.push_back(i);
       
     }
     else
@@ -80,7 +80,7 @@ void Fill::fillAndUnion(int seed, double p, int n)
     }
   }
 
-  clusters = percolation.getQu().getSize();
+  //clusters = percolation.getQu().getSize();
   
 }
 
@@ -90,7 +90,7 @@ void Fill::fillAndUnion(int seed, double p, int n)
  */                                                                                                                                                                                  
 
 
-void Fill::virtualUnion(){
+/*void Fill::virtualUnion(){
   
   
   for(int pos:rowTop){
@@ -106,7 +106,7 @@ void Fill::virtualUnion(){
     percolation.virtualUnion(pos);
   }
   
-}
+  }*/
 
 /**                                                                                                                                                                                 
  * Fill the element {@code i} with parent or root to show 
@@ -128,7 +128,7 @@ void Fill:: paintClusters(){
  * @return size greatest cluster if system percolate and 1 otherwise   
 */
 
-int Fill::findGreatestCluster(){
+/*int Fill::findGreatestCluster(){
 
   int greatest=0;
   for(int cluster:clusters){
@@ -140,7 +140,7 @@ int Fill::findGreatestCluster(){
   //std::cout<<std::endl;
 
   return greatest;
-}
+  }*/
 
 /**                                                                                                                                                                                 
  * check si the matrix vector percolate and call
@@ -161,7 +161,7 @@ bool Fill::percolate(int seed, double p, int N)
 {
   fillAndUnion(seed, p, N);
   paintClusters();
-  virtualUnion();
+  // virtualUnion();
   return percolation.percolates();
 }
 /**                                                                                                                                                                                 

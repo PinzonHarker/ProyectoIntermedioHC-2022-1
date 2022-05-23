@@ -52,13 +52,26 @@ int WQUF::find(int p)
   int root = p;
   while (root != parent[root])
     root = parent[root];
-  while (p != root)
+  /*while (p != root)
   {
     int newp = parent[p];
     parent[p] = root;
     p = newp;
-  }
+    }*/
   return p;
+}
+
+void WQUF::pathCompression(int p, int root){
+  while (p != root)
+  {
+    int newp = parent[p];
+    parent[p] = root;
+    short boudary = isInBoundary(p);
+    if(boundary<4){
+      putInBoundary(boundary, root, index);
+    }
+    p = newp;
+  }
 }
 
 /**
@@ -115,7 +128,7 @@ short WQUF::isInBoundary(){
   if(i%n == 0) return 1;
   if(i%n == n-1) return 2; 
   if(i>= n*(n-1)) return 3;
-  
+  return 4;
 }
 
 void WQUF::putInBoundary(short boundary, int root, int index){

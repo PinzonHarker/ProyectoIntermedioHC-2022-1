@@ -32,10 +32,12 @@ Percolation::Percolation(int n)
   }
 }
 
-void Percolation::setSize(int size)
+/*void Percolation::setSize(int size)
 {
   this->size = size;
-}
+  }*/
+
+
 int Percolation::getSize()
 {
   return size;
@@ -53,10 +55,11 @@ std::vector<bool> Percolation::getState()
 {
   return state;
 }
-void Percolation::setState(std::vector<bool> state)
+
+/*void Percolation::setState(std::vector<bool> state)
 {
   this->state = state;
-}
+  }*/
 
  /**
      * Opens the site {@code index} if it is not open already
@@ -115,7 +118,7 @@ void Percolation::open(int index)
      * @param index of the element.                                                                                                                                                 
      */
 
-void Percolation::virtualUnion(int index){
+/*void Percolation::virtualUnion(int index){
   if (index < size)
   {
 
@@ -137,13 +140,13 @@ void Percolation::virtualUnion(int index){
     quT.myUnion(index, size * size + 1);
   }
 }
+*/
 
 
-
-void Percolation::setQu(WQUF qu)
+/*void Percolation::setQu(WQUF qu)
 {
   this->qu = qu;
-}
+  }*/
 
 /**                                                                                                                                                                                 
      * Check if the element {@code index} is open
@@ -155,11 +158,11 @@ bool Percolation::isOpen(int index)
 {
   return state[index];
 }
-
+/*
 bool Percolation::isFull(int index)
 {
   return !isOpen(index);
-}
+  }*/
 
 /**
      * returns the number of open sites.
@@ -191,11 +194,33 @@ int Percolation::percolates()
   int sizeGClusterP =0;
   std::vector<int> clusters =  qu.getSize();
   for(int element:clusters){
-    if(element>sizeGCluster && isOppositeBoundaries(element)){
+    if(element>sizeGCluster && isInOppositeBoundaries(element)){
       sizeGClusterP = element;
     }
   }
   return element;
   /*return qu.find(size * size) == qu.find(size * size + 1) ||
     quT.find(size * size) == quT.find(size * size + 1);*/
+}
+
+bool Percolation::isInOppositeBoundaries(int root){
+  for(int elementT:qu.getTopRow()){
+    if(elementT == root){
+      for(int elementB:getBottomRow()){
+	if(elementB == root){
+	  return true;
+	}
+      }
+    }
+  }
+  for(int elementL:qu.getColLeft()){
+    if(elementL == root){
+      for(int elementR:getBottomRow()){
+	if(elementR == root){
+          return true;
+        }
+      }
+    }
+  }
+  return false;
 }
